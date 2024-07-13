@@ -9,6 +9,8 @@ baseurl = 'http://www.puneapmc.org/rates.aspx'
 r = requests.get('http://www.puneapmc.org/history.aspx?id=Rates3997')
 soup = BeautifulSoup(r.content,'lxml')
 
-productlist = soup.find_all('div',class_='item')
 
-print(productlist)
+# Now you can extract the data as needed
+datex = soup.find_all('th')
+
+print(datex)
