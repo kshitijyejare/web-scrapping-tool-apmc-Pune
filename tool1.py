@@ -13,8 +13,11 @@ headers = {
 r = requests.get('http://www.puneapmc.org/history.aspx?id=Rates3289')
 response = requests.get(url, headers=headers)
 
-soup = BeautifulSoup(response.text, 'html.parser')
+soup = BeautifulSoup(response.text, features='html.parser')
 
-productlist = soup.find_all('div',class_='item')
+datex = soup.find_all('h2')[0].text
+onion_arr = soup.find_all('td')[3].text
+onion_min = soup.find_all('td')[4].text
+onion_max = soup.find_all('td')[5].text
 
-print(productlist)
+print(datex,onion_arr,onion_max,onion_min)
