@@ -4,13 +4,17 @@ import requests
 import openpyxl
 import pandas as pd
 
-baseurl = 'http://www.puneapmc.org/rates.aspx'
+url = 'http://www.puneapmc.org/history.aspx?id=Rates3289'
 
-r = requests.get('http://www.puneapmc.org/history.aspx?id=Rates3997')
-soup = BeautifulSoup(r.content,'lxml')
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
 
+r = requests.get('http://www.puneapmc.org/history.aspx?id=Rates3289')
+response = requests.get(url, headers=headers)
 
-# Now you can extract the data as needed
-datex = soup.find_all('th')
+soup = BeautifulSoup(response.text, 'html.parser')
 
-print(datex)
+productlist = soup.find_all('div',class_='item')
+
+print(productlist)
